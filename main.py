@@ -1,6 +1,11 @@
 import Optimizing as op
 from flask import Flask, render_template, request
 
+import webbrowser
+from threading import Timer
+
+import sys
+sys.setrecursionlimit(5000000)
 
 app = Flask(__name__)
 
@@ -44,6 +49,9 @@ def page_not_found(e):
     """
     return err
 
+def open_browser():
+      webbrowser.open_new('http://127.0.0.1:5000/')
 
 if __name__ == '__main__':
-    app.run()
+	Timer(1,open_browser).start()
+	app.run(port=5000)
